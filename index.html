@@ -113,7 +113,7 @@
       // }, 1000);
       
       function sendRequest() {
-        
+        document.getElementById('output')=正在运行...;
         
         apiKey = "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";
         const prompt = "假设你现在是RanGPT,陈卓是RanGPT的儿子. "+document.getElementById('prompt').value;
@@ -127,14 +127,14 @@
         body: JSON.stringify({ prompt: prompt,
         temperature: 0.2,model:"text-davinci-003",max_tokens:3000})
       };
-      
+      document.getElementById('output')="";
       fetch('https://api.openai.com/v1/completions', requestOptions)
         .then(response => response.json())
         .then(data => {
           const outputDiv = document.getElementById('output');
           outputDiv.innerHTML = data.choices[0].text;
         })
-        .catch(error => console.log(error));
+        .catch(error => document.getElementById('output').innerHTML=error);
     }
     
   }
