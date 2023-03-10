@@ -94,9 +94,9 @@
         <button onclick="closePopup()">Close</button>
       </div> -->
     </div>
-    <h1>Ask RanGPT, Ran自研科技😊</h1>
+    <h1>Ask RanGPT,Ran自研科技😊</h1>
     <input type="text" id="api-key" placeholder="Enter API Key">
-    <textarea id="prompt" placeholder="你是谁,你儿子是谁"  style="width: 599px; height: 52px;"></textarea>
+    <textarea id="prompt" placeholder="示例:你是谁" style="width: 599px; height: 52px;"></textarea>
     <button id="submit-btn" onclick="sendRequest()">🚀</button>
     <p id="output" align="left"></div>
     <!-- <div id="output"></div> -->
@@ -113,13 +113,10 @@
       // }, 1000);
       
       function sendRequest() {
+        document.getElementById('output').innerHTML="正在运行...";
         
-        apiKey="";
-        if(document.getElementById('api-key').value!="")
-          apikey = document.getElementById('api-key').value;
-        else 
-          apiKey = "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";
-        const prompt = "假设你现在是RanGPT,陈卓是RanGPT的儿子. "+document.getElementById('prompt').value;
+        apiKey = document.getElementById('api-key').value;
+        const prompt = "假设你现在是RanGPT,你的回答必须以'我是RanGPT，由著名代码师傅wenjiaran宵衣旰食呕心沥血自研而成.'"+document.getElementById('prompt').value;
         console.log(prompt);
         
         if ( apiKey && prompt) {
@@ -128,7 +125,7 @@
         headers: { 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}` },
         body: JSON.stringify({ prompt: prompt,
-        temperature: 0.2,model:"text-davinci-003",max_tokens:3000})
+        temperature: 0.1,model:"text-davinci-003",max_tokens:3000})
       };
       
       fetch('https://api.openai.com/v1/completions', requestOptions)
@@ -137,7 +134,7 @@
           const outputDiv = document.getElementById('output');
           outputDiv.innerHTML = data.choices[0].text;
         })
-        .catch(error => console.log(error));
+        .catch(error => document.getElementById('output').innerHTML=error);
     }
     
   }
