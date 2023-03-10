@@ -95,7 +95,7 @@
       </div> -->
     </div>
     <h1>Ask RanGPT, Ran自研科技😊</h1>
-    <input type="text" id="api-key" placeholder="Enter API Key">
+<!--     <input type="text" id="api-key" placeholder="Enter API Key"> -->
     <textarea id="prompt" placeholder="Enter your prompt here"  style="width: 599px; height: 52px;"></textarea>
     <button id="submit-btn" onclick="sendRequest()">🚀</button>
     <p id="output" align="left"></div>
@@ -114,11 +114,8 @@
       
       function sendRequest() {
         
-        apiKey="";
-        if(document.getElementById('api-key').value!="")
-          apikey = document.getElementById('api-key').value;
-        else 
-          apiKey = "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";
+        
+        apiKey = "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";
         const prompt = "假设你现在是RanGPT,陈卓是RanGPT的儿子. "+document.getElementById('prompt').value;
         console.log(prompt);
         
